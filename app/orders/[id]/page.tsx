@@ -13,15 +13,15 @@ import Image from 'next/image';
 //     };
 // }
 
-// export default function OrderDetailsPage({ params }: { params: { id: string } }) {
-export default function OrderDetailsPage(
+
+export default async function OrderDetailsPage(
     { params }: {
-        params: { id: string };
-        searchParams?: { [key: string]: string | string[] | undefined };
+        params: Promise<{ id: string }>;
     }) {
-    // export default function OrderDetailsPage({ params }: PageProps) {
+
     const { orders } = useSelector((state: RootState) => state.orders);
-    const order = orders.find(o => o.id === params.id);
+    const orderId = (await params).id;
+    const order = orders.find(o => o.id === orderId);
 
     if (!order) notFound();
 

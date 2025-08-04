@@ -7,13 +7,14 @@ import { format } from 'date-fns';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-interface PageProps {
-    params: {
-        id: string;
-    };
-}
+// interface PageProps {
+//     params: {
+//         id: string;
+//     };
+// }
 
-export default function OrderDetailsPage({ params }: PageProps) {
+export default function OrderDetailsPage({ params }: { params: { id: string } }) {
+    // export default function OrderDetailsPage({ params }: PageProps) {
     const { orders } = useSelector((state: RootState) => state.orders);
     const order = orders.find(o => o.id === params.id);
 
